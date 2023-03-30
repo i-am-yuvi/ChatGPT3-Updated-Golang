@@ -18,7 +18,7 @@ func GetResponse(client gpt3.Client, ctx context.Context, chat string) {
 		Prompt: []string{
 			chat,
 		},
-		MaxTokens:   gpt3.IntPtr(30),
+		MaxTokens:   gpt3.IntPtr(100),
 		Temperature: gpt3.Float32Ptr(0),
 	}, func(resp *gpt3.CompletionResponse) {
 		fmt.Print(resp.Choices[0].Text)
@@ -27,7 +27,7 @@ func GetResponse(client gpt3.Client, ctx context.Context, chat string) {
 		log.Fatalln(err)
 		os.Exit(13)
 	}
-	fmt.Printf("\n")
+	fmt.Println("")
 }
 
 // type Nullwriter int
@@ -55,6 +55,7 @@ func main() {
 			quit := false
 
 			for !quit {
+				fmt.Printf("\n")
 				fmt.Println("Say something('quit' to end)")
 				if !scanner.Scan() {
 					break
